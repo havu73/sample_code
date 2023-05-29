@@ -1,0 +1,24 @@
+name: torch_env
+channels: # first channel has highest priority. If the command is "conda create --name rproject-env --channel defaults --channel conda-forge r-base" then defaults has higher priority, source: https://edcarp.github.io/introduction-to-conda-for-data-scientists/03-using-packages-and-channels/index.html#:~:text=Channel%20priority&text=By%20default%2C%20conda%20prefers%20packages,highest%20to%20lowest%20channel%20priority.
+  - defaults
+  - conda-forge
+  - pytorch
+  - nvidia
+  - bioconda
+  - anaconda # ChatGPT said it's better to give bioconda higher priority than anaconda
+channel_priority: strict
+dependencies:
+  - python=3.8
+# - jupyter # this is needed so that I can run jupyter notebook, but I actually needed to do pip install jupyterlab
+  - numpy=1.23.5 # Note that this will install the latest version, which makes scanpy crashes when it gets imported. Instead, I added a step of installing numpy 1.23.5 and it worked. References: https://stackoverflow.com/questions/74947992/how-to-remove-the-error-systemerror-initialization-of-internal-failed-without
+  - pandas
+  - scipy
+  - scikit-learn
+  - seaborn
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.7
+  - pybedtools 
+  - h5py
+  # - ipykernel # from channel annaconda, I also had to follow this tutorial to get my conda environment registered on jupyter notebook
